@@ -8,12 +8,14 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
+from sklearn.linear_model import SGDClassifier
 import numpy as np
 
 # model = Perceptron()
 # model = svm.SVC()
 # model = KNeighborsClassifier(n_neighbors=4)
-model = GaussianNB()
+# model = GaussianNB()
+# model = SGDClassifier()
 
 with open("weather_data.csv") as f:
     reader = csv.reader(f)
@@ -30,7 +32,7 @@ evidence = [row["evidence"] for row in data]
 labels = [row["label"] for row in data]
 
 X_training, X_testing, y_training, y_testing = train_test_split(
-    evidence, labels, test_size=0.4
+    evidence, labels, test_size=0.5
 )
 
 model.fit(X_training, y_training)
